@@ -1,1 +1,75 @@
-<h1>Hello my twig</h1>
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Mes fonds</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Monnaie</th>
+                    <th scope="col">Disponible</th>
+                    <th scope="col">Sur Commande</th>
+                    <th scope="col">btcValue</th>
+                    <th scope="col">btcTotal</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for key,balance in balances  %}
+                    <tr>
+                        <th scope="row">{{ key }}:</th>
+                        <td>{{balance.available}}</td>
+                        <td>{{balance.onOrder}}</td>
+                        <td>{{balance.btcValue}}</td>
+                        <td>{{balance.btcTotal}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-12">
+            <h2>Historique des transactions</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Numero</th>
+                    <th scope="col">devises</th>
+                    <th scope="col">id</th>
+                    <th scope="col">commandes id</th>
+                    <th scope="col">order list id</th>
+                    <th scope="col">prix</th>
+                    <th scope="col">quantité</th>
+                    <th scope="col">quote quantité</th>
+                    <th scope="col">comission</th>
+                    <th scope="col">comissionAsset</th>
+                    <th scope="col">temps</th>
+                    <th scope="col">c'est acheter</th>
+                    <th scope="col">c'est crée</th>
+                    <th scope="col">is best match</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for history in historys %}
+                    <tr>
+                        <th scope="row">{{ loop.index }}</th>
+                        <td>{{history.symbol}}</td>
+                        <td>{{history.id}}</td>
+                        <td>{{history.orderId}}</td>
+                        <td>{{history.orderListId}}</td>
+                        <td>{{history.price}}</td>
+                        <td>{{history.qty}}</td>
+                        <td>{{history.quoteQty}}</td>
+                        <td>{{history.commission}}</td>
+                        <td>{{history.commissionAsset}}</td>
+                        <td>{{history.time}}</td>
+                        <td>{{history.isBuyer}}</td>
+                        <td>{{history.isMaker}}</td>
+                        <td>{{history.isBestMatch}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
