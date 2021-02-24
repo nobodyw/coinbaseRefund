@@ -24,10 +24,10 @@ class mainController extends AbstractController
      * @Route("/", name="indexRoute")
      */
     public function index(){
-        $balances = $this->requestclient->getBalances();
-        $history = $this->requestclient->historyCommands("BTCBUSD");
-
-        $this->requestclient->marketSell("BTCBUSD");
+        $balances = $this->requestclient->shop();
+        $history = $this->requestclient->historyCommands("XRPBUSD");
+//
+//        $this->requestclient->marketSell("BNBUSDT");
 
         return $this->render('index.html.twig',[
             'balances' => $balances,
